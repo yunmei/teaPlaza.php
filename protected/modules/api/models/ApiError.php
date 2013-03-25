@@ -11,55 +11,55 @@ class ApiError
 	/**
 	 * 没有错误信息
 	 */
-	const SUCCESS = 0;
+	const SUCCESS = "0";
 
 	/**
 	 * 用户验证失败
 	 */
-	const USER_CHECK_INVALID = 1;
+	const USER_CHECK_INVALID = "1";
 	
 	/**
 	 * session验证失败
 	 */
-	const SID_CHECK_INVALID = 2;
+	const SID_CHECK_INVALID = "2";
 	
 	/**
 	 * 缺少method参数
 	 */
-    const METHOD_NO_PARAM = 100;
+    const METHOD_NO_PARAM = "100";
     
     /**
      * 参数不正确
      */
-    const METHOD_INVALID = 101;
+    const METHOD_INVALID = "101";
     
     /**
      * 缺少apikey参数
      */
-    const APIKEY_NO_EXIST = 200;
+    const APIKEY_NO_EXIST = "200";
     
     /**
      * apikey不能用
      */
-    const APIKEY_INVALID = 201;
+    const APIKEY_INVALID = "201";
     
     /**
      * 缺少输出方法
      */
-    const RENDER_NO_METHOD = 300;
+    const RENDER_NO_METHOD = "300";
     
     /**
      * 系统参数错误
      */
-    const BASE_PARAM_INVALID = 301;
+    const BASE_PARAM_INVALID = "301";
     
     /**
      * 参数错误
      */
-    const ARGS_INVALID = 400;
+    const ARGS_INVALID = "400";
     
     /**
      * 用户已存在
      */
-    const USER_EXISTS = 401;
+    const USER_EXISTS = "401";
 }
