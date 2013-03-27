@@ -1,2 +1,3 @@
-
 *.swp
+assets/
+protected/runtime/
