@@ -108,4 +108,19 @@ class Api_App
 		$data = array('errorCode' => ApiError::SUCCESS, 'errorMessage'=>'', 'result'=>$array);
 		return $data;
 	}
+
+	/**
+	 * 意见反馈
+	 * version 1.0
+	 */
+	public function feedback($args, $format)
+	{
+		$content = trim($_GET['content']);
+		$contact = trim($_GET['contact']);
+		if(1) {
+			return ApiBase::$success;
+		} else {
+			return ApiBase::$fail;
+		}
+	}
 }
