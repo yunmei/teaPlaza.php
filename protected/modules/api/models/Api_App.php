@@ -91,4 +91,21 @@ class Api_App
 		$data = array('errorCode' => ApiError::SUCCESS, 'errorMessage'=>'', 'result'=>$array);
 		return $data;
 	}
+	
+	/**
+	 * 获取当前应用的版本号
+	 * version 1.0
+	 */
+	public function getCurrentVersion($args, $format)
+	{
+		$version = floatval($_GET['version']);
+		$currentVersion = "1.0";
+		if ($currentVersion > $version) {
+			$array = array('update' => 'YES');
+		} else {
+			$array = array('update' => 'NO');
+		}
+		$data = array('errorCode' => ApiError::SUCCESS, 'errorMessage'=>'', 'result'=>$array);
+		return $data;
+	}
 }
