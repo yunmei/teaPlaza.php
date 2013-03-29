@@ -41,12 +41,13 @@ class Api_User
 	 */
 	public function register($args, $format)
 	{
-		$username = strip_tags(trim($_POST['username']));
-		$password = trim($_POST['password']);
-		$email = strip_tags(trim($_POST['email']));
+		$username = strip_tags(trim($_GET['username']));
+		$password = trim($_GET['password']);
+		$email = strip_tags(trim($_GET['email']));
 		if(!$username || !$password) {
 			return ApiBase::$fail;
 		}
+		// 这里需要往ucenter里进行注册
 		$criteria = new CDbCriteria();
 		$criteria->addColumnCondition(array('username'=>$username));
 		$user = User::model()->find($criteria);
@@ -66,12 +67,21 @@ class Api_User
 		return $data;
 	}
 
-	public function test($args, $format)
+	/**
+	 * 获取用户数据
+	 * @version 1.0
+	 */
+	public function getUserData($args, $format)
 	{
-		$array = array(
-			'content' => 'aaa'
-		);
-		$data = array('errorCode' => ApiError::SUCCESS, 'errorMessage'=>'', 'result'=>$array);
+		$uid = intval($_GET['uid']);
+		$url = param('RequestDataUrl') . $uid;
+		$content = GlobalTools::curl($url);
+		$array = json_decode($content);
+		$data = array('errorCode' => ApiError::SUCCESS, 'errorMessage'=> '', array(
+			'score' => intval($array->score) . '',
+			'point' => intval($array->point) . '',
+			'diamond' => intval($array->diamond) . ''
+		));
 		return $data;
 	}
 }

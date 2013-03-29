@@ -108,6 +108,7 @@ class ApiBase
 	{
 		$username = strip_tags(trim($_GET['username']));
 		$password = strip_tags(trim($_GET['password']));
+		// 这里需要和ucenter进行用户认证
 		$criteria = new CDbCriteria();
 		$criteria->select = 'id, username, login_nums';
 		$criteria->addColumnCondition(array('username'=>$username, 'password'=>$password, 'state'=>STATE_ENABLED));
