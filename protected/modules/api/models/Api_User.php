@@ -27,8 +27,9 @@ class Api_User
 		$session->active_time = time() + 3600*12;
 		$session->active_sign = ApiBase::getActiveSign();
 		if($session->save()) {
-			$data = array('errorCode' => ApiError::SUCCESS, 'errorMessage'=>'', 'result'=>array(
-				'sid'=>$session->session
+			$data = array('errorCode' => ApiError::SUCCESS, 'errorMessage' => '', 'result' => array(
+				'uid' => $user->id,
+				'sid' => $session->session
 			));
 			return $data;
 		}
