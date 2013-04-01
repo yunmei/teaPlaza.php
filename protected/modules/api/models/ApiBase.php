@@ -6,7 +6,7 @@ class ApiBase
 	
 	public static $noResult = array(); 							// 没有查询结果
 	public static $success = array('errorCode' => ApiError::SUCCESS, 'errorMessage'=>'', 'result'=>STATE_ENABLED);	// 操作成功
-	public static $fail = array('errorCode' => ApiError::SUCCESS, 'errorMessage'=>'', 'result'=>STATE_DISABLED);		// 操作失败
+	public static $fail = array('errorCode' => ApiError::FAIL, 'errorMessage'=>'操作失败', 'result'=>STATE_DISABLED);// 操作失败
 
 	/**
 	 * 检查数据返回格式

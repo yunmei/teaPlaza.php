@@ -12,7 +12,12 @@ class ApiError
 	 * 没有错误信息
 	 */
 	const SUCCESS = "0";
-
+	
+	/**
+	 * 错误失败
+	 */
+	const FAIL = "1000";
+	
 	/**
 	 * 用户验证失败
 	 */
@@ -62,4 +67,9 @@ class ApiError
      * 用户已存在
      */
     const USER_EXISTS = "401";
+    
+    /**
+     * 邮箱已存在
+     */
+    const USER_EMAIL_EXISTS = "402";
 }

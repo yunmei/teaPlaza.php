@@ -53,6 +53,13 @@ class Api_User
 		$criteria->addColumnCondition(array('username'=>$username));
 		$user = User::model()->find($criteria);
 		if(null === $user) {
+			$criteria = new CDbCriteria();
+			$criteria->addColumnCondition(array('email'=>$email));
+			$user = User::model()->find($criteria);
+		} else {
+			$data = array('errorCode' => ApiError::USER_EXISTS, 'errorMessage'=>'用户已存在');
+		}
+		if(null === $user) {
 			$user = new User();
 			$user->username = $username;
 			$user->password = $password;
@@ -63,8 +70,9 @@ class Api_User
 			} else {
 				return ApiBase::$fail;
 			}
+		} else {
+			$data = array('errorCode' => ApiError::USER_EMAIL_EXISTS, 'errorMessage'=>'邮箱已存在');
 		}
-		$data = array('errorCode' => ApiError::USER_EXISTS, 'errorMessage'=>'用户已存在');
 		return $data;
 	}
 
@@ -74,11 +82,11 @@ class Api_User
 	 */
 	public function getUserData($args, $format)
 	{
-		$uid = intval($_GET['uid']);
+		$uid = ApiBase::checkSid($format);
 		$url = param('RequestDataUrl') . $uid;
 		$content = GlobalTools::curl($url);
 		$array = json_decode($content);
-		$data = array('errorCode' => ApiError::SUCCESS, 'errorMessage'=> '', array(
+		$data = array('errorCode' => ApiError::SUCCESS, 'errorMessage'=> '', 'result'=>array(
 			'score' => intval($array->score) . '',
 			'point' => intval($array->point) . '',
 			'diamond' => intval($array->diamond) . ''
